@@ -54,17 +54,4 @@ cursor.execute(MySQLQuery5)
 results5 = cursor.fetchall()
 #print(results5)
 
-
-
-
-
-
-
-
-
-
-
-
-
 connection.close()
-
