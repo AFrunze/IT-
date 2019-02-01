@@ -3,6 +3,7 @@ import pypyodbc
 connection = pypyodbc.connect("Driver={SQL Server}; Server=localhost;Port=1433;Database=ImportFromExcel")
 
 cursor = connection.cursor()
+
 #a
 MySQLQuery1 = (""""
                 SELECT *
@@ -53,5 +54,6 @@ MySQLQuery5 = (""""
 cursor.execute(MySQLQuery5)
 results5 = cursor.fetchall()
 #print(results5)
+
 
 connection.close()
