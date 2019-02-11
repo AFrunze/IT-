@@ -1,4 +1,8 @@
-import pypyodbc
+import pypyodbc # или sqlite3/mysql.connector
+import numpy as np 
+import matplotlib 
+matplotlib.use('Agg') 
+import matplotlib.pyplot as plt
 
 connection = pypyodbc.connect("Driver={SQL Server}; Server=localhost;Port=1433;Database=ImportFromExcel")
 
@@ -369,16 +373,73 @@ cursor.execute(MySQLQuery6)
 results6 = cursor.fetchall() 
 
 for r in results6:
-  if r in d
-  a = dictionary.get(r)
-  n = n + a
-  
+    grade_1 = r[0]
+  for i in grade_1: 
+    if i in d:
+    a = dictionary.get(i)
+    print(a)
+    else:
+    print (i)
+          
 # отправка рейтингов в sql
 
+sql = """ 
+UPDATE base_dq 
+SET grade in d.key()
+WHERE grade = d.values()
+""" 
+
+cursor.execute(sql) 
+conn.commit()
+# создание таблицы-словаря в бд
+conn = pypyodbc.connect("dict.db") # создание новой таблицы, если до этого не существовала
+cursor = conn.cursor() 
+
+# Создание таблицы 
+cursor.execute(""CREATE TABLE dict 
+(grade text, kod text) 
+"")
+
+cursor.execute("INSERT INTO dict  
+VALUES (?,?)", (d.keys(),d.values())
+
+# ввод даты
+Print ('input date')
+date = input()
+
+#для  первого пункта правильный запрос
+
+MySQLQuery = (""""
+                SELECT *
+                FROM dbo.base_dq
+                where date_str > "01/07/2010" and ag_name not like 'Интерфакс' and ag_name not like 'АМБест Компани'and ent_name like '%банк%' or ent_name like '%bank%'
+               and ent_name not like '%банк%' and ent_name not like '%bank%' and scale_typer like 'Nsc' or scale_typer like '' and date_str = date
+               """)
 
 
+cursor.execute(MySQLQuery)
+results = cursor.fetchall()
 
+for j in results
+  ratname = j[1]
+  date = j[5]
   
+  
+plt.title('Количество присвоенных рейтингом каждым агентством шт и (%)')
+
+# для pie chart
+labels = agname
+
+
+# Plot 
+plt.pie(sizes, explode=explode, labels=labels, colors=colors, 
+autopct='%1.1f%%', shadow=True, startangle=140) 
+
+plt.axis('equal') 
+plt.show()
+
+
+
 
 
 connection.close()
