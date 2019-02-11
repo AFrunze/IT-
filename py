@@ -423,23 +423,16 @@ results = cursor.fetchall()
 for j in results
   ratname = j[1]
   date = j[5]
-  
+from collections import Counter 
+m = Counter(ratname)
   
 plt.title('Количество присвоенных рейтингом каждым агентством шт и (%)')
-
 # для pie chart
-labels = agname
-
-
-# Plot 
-plt.pie(sizes, explode=explode, labels=labels, colors=colors, 
-autopct='%1.1f%%', shadow=True, startangle=140) 
-
+labels = m.keys()
+sizes = m.values()
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True) 
 plt.axis('equal') 
 plt.show()
-
-
-
 
 
 connection.close()
